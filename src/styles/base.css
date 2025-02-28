@@ -1,0 +1,23 @@
+:root {
+   --bg-color: #323437;
+   --main-color: #e2b714;
+   --sub-color: #646669;
+   --text-color: #d1d0c5;
+   --error-color: #ca4754;
+}
+
+* {
+   box-sizing: border-box;
+}
+
+html {
+   font-size: 16px;
+}
+
+body {
+   margin: 0;
+   line-height: 1.5;
+
+   background-color: var(--bg-color);
+   color: var(--text-color);
+}

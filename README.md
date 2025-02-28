@@ -1,1 +1,3 @@
-# fastly-preview
+# Fastly Preview
+
+Fastly image optimization preview
