@@ -1,4 +1,4 @@
 import '/src/styles/base.css';
-import './styles/index.css';
+import './styles/app.css';
 
 console.log('Hello, world!');
