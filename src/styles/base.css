@@ -1,11 +1,3 @@
-:root {
-   --bg-color: #323437;
-   --main-color: #e2b714;
-   --sub-color: #646669;
-   --text-color: #d1d0c5;
-   --error-color: #ff282d;
-}
-
 * {
    box-sizing: border-box;
 }
