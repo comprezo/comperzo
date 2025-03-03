@@ -1,3 +1,8 @@
+:root {
+   --split-x: 0px;
+   --split-y: 0px;
+}
+
 .app-space {
    position: relative;
    height: 100%;
@@ -11,9 +16,10 @@
    left: 0;
    height: 100%;
    width: 100%;
+
+   user-select: none;
 }
 
-/* TODO: styles when no img */
 .app-space--img {
    position: absolute;
    top: 0;
@@ -23,6 +29,30 @@
    left: 50%;
 
    transform: translate(-50%, -50%);
+
+   background-color: rgba(0 0 0 / 0.1);
+
+   --real-split-x: calc(50% + var(--split-x));
+   --real-split-y: calc(50% + var(--split-y));
+
+   &:nth-child(1) {
+      filter: brightness(0.1);
+      clip-path: inset(0 calc(100% - var(--real-split-x)) calc(100% - var(--real-split-y)) 0);
+   }
+
+   &:nth-child(2) {
+      clip-path: inset(0 0 calc(100% - var(--real-split-y)) var(--real-split-x));
+      filter: grayscale(1);
+   }
+
+   &:nth-child(3) {
+      clip-path: inset(var(--real-split-y) 0 0 var(--real-split-x));
+      filter: invert(1);
+   }
+
+   &:nth-child(4) {
+      clip-path: inset(var(--real-split-y) calc(100% - var(--real-split-x)) 0 0);
+   }
 }
 
 .app-space--handle {
@@ -68,7 +98,7 @@
 
    top: 0;
    bottom: 0;
-   left: 50%;
+   left: calc(50% + var(--split-x));
 
    cursor: ew-resize;
 }
@@ -79,9 +109,25 @@
 
    left: 0;
    right: 0;
-   top: 50%;
+   top: calc(50% + var(--split-y));
 
    flex-direction: column;
 
    cursor: ns-resize;
+}
+
+.app-space--handle-xy {
+   position: absolute;
+   z-index: 10;
+
+   top: calc(50% + var(--split-y));
+   left: calc(50% + var(--split-x));
+
+   transform: translate(-50%, -50%);
+
+   width: 32px;
+   height: 32px;
+
+   opacity: 0;
+   cursor: move;
 }
