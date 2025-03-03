@@ -9,22 +9,6 @@ export default defineConfig({
          '@': '/src',
       },
    },
-   build: {
-      rollupOptions: {
-         input: {
-            main: 'index.html',
-            sw: 'src/pages/index/components/sw/sw.ts'
-         },
-         // output: {
-         //    entryFileNames: (chunkInfo) => {
-         //       if (chunkInfo.name === 'sw') {
-         //          return 'service-worker.js';
-         //       }
-         //       return '[name].js';
-         //    }
-         // }
-      }
-   },
    css: {
       postcss: {
          plugins: [
