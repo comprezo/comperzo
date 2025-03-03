@@ -1,0 +1,87 @@
+.app-space {
+   position: relative;
+   height: 100%;
+
+   overflow: hidden;
+}
+
+.app-space--space {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
+}
+
+/* TODO: styles when no img */
+.app-space--img {
+   position: absolute;
+   top: 0;
+   left: 0;
+
+   top: 50%;
+   left: 50%;
+
+   transform: translate(-50%, -50%);
+}
+
+.app-space--handle {
+   --size: 8px;
+   --real-size: 16px;
+
+   --bg: rgba(0 0 0 / 0.8);
+   --shadow-color: rgba(255 255 255 / 0.1);
+
+   position: absolute;
+   z-index: 8;
+
+   display: flex;
+   justify-content: center;
+   align-items: stretch;
+
+   border: 0;
+   padding: 0;
+   background: transparent;
+   outline: none;
+
+   &:hover,
+   &:active {
+      --bg: #000;
+      --shadow-color: rgba(255 255 255 / 0.2);
+   }
+
+   &:before {
+      content: '';
+      flex-basis: var(--size);
+
+      background-color: var(--bg);
+      box-shadow: 0 0 0 1px var(--shadow-color);
+
+      transition: background-color 0.2s ease-out,
+         box-shadow 0.2s ease-out;
+   }
+}
+
+.app-space--handle__v {
+   width: var(--real-size);
+   margin: 0 calc(var(--real-size) / -2);
+
+   top: 0;
+   bottom: 0;
+   left: 50%;
+
+   cursor: ew-resize;
+}
+
+.app-space--handle__h {
+   height: var(--real-size);
+   margin: calc(var(--real-size) / -2) 0;
+
+   left: 0;
+   right: 0;
+   top: 50%;
+
+   flex-direction: column;
+
+   cursor: ns-resize;
+}
