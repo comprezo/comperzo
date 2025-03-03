@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+   <title>Comperzo v0.1</title>
+
+   <meta name="description" content="4-in-1 URL-Based Image Optimization 
+      Comparison. Unlock the potential of URL-based image 
+      optimization with Comperzo.io. Simply enter your image URL along with 
+      parameters from services like Fastly to generate up to 4 distinct 
+      versions for side-by-side comparison">
+
    <meta charset="UTF-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -15,8 +23,6 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=block">
 
    <script type="module" src="/src/pages/index/index.ts"></script>
-
-   <title>Comperzo v0.1</title>
 </head>
 
 <body>
@@ -39,20 +45,20 @@
             </div>
          </div>
 
-         <button class="app-space--handle app-space--handle__h handle-h-js"></button>
-         <button class="app-space--handle app-space--handle__v handle-v-js"></button>
-         <button class="app-space--handle-xy handle-xy-js"></button>
+         <button class="app-space--handle app-space--handle__h handle-h-js" aria-label="horizontal handle"></button>
+         <button class="app-space--handle app-space--handle__v handle-v-js" aria-label="vertical handle"></button>
+         <button class="app-space--handle-xy handle-xy-js" aria-label="xy handle"></button>
       </div>
       <div class="app--img-controllers">
          <div class="app--img-controller img-controller img-controller__tl img-controller-js">
-            <textarea class="img-controller--url img-controller--inp url-js" rows="1"></textarea>
+            <textarea class="img-controller--url img-controller--inp url-js" rows="1" aria-label="url"></textarea>
             <p class="img-controller--stats">
                <span class="stats--resolution resolution-js">Loading...</span>
                <span class="stats--size size-js"></span>
             </p>
          </div>
          <div class="app--img-controller img-controller img-controller__tr img-controller-js">
-            <textarea class="img-controller--url img-controller--inp url-js" rows="1"></textarea>
+            <textarea class="img-controller--url img-controller--inp url-js" rows="1" aria-label="url"></textarea>
             <p class="img-controller--stats">
                <span class="stats--resolution resolution-js">Loading...</span>
                <span class="stats--size size-js"></span>
@@ -63,14 +69,14 @@
                <span class="stats--resolution resolution-js">Loading...</span>
                <span class="stats--size size-js"></span>
             </p>
-            <textarea class="img-controller--url img-controller--inp url-js" rows="1"></textarea>
+            <textarea class="img-controller--url img-controller--inp url-js" rows="1" aria-label="url"></textarea>
          </div>
          <div class="app--img-controller img-controller img-controller__bl img-controller-js">
             <p class="img-controller--stats">
                <span class="stats--resolution resolution-js">Loading...</span>
                <span class="stats--size size-js"></span>
             </p>
-            <textarea class="img-controller--url img-controller--inp url-js" rows="1"></textarea>
+            <textarea class="img-controller--url img-controller--inp url-js" rows="1" aria-label="url"></textarea>
          </div>
       </div>
       <div class="app--panel app-panel panel-js">

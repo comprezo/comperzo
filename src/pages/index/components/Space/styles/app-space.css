@@ -73,7 +73,7 @@
 
 .app-space--handle {
    --size: 8px;
-   --real-size: 16px;
+   --real-size: 32px;
 
    --bg: rgba(0 0 0 / 0.8);
    --shadow-color: rgba(255 255 255 / 0.1);
@@ -141,8 +141,8 @@
 
    transform: translate(-50%, -50%);
 
-   width: 32px;
-   height: 32px;
+   width: 48px;
+   height: 48px;
 
    opacity: 0;
    background-color: rgba(0 0 0 / 0.8);
