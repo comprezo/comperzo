@@ -54,6 +54,7 @@ function initEvents() {
       if ($zoom) {
          console.log(+$zoom.dataset.value! || 1);
          space.setZoom(+$zoom.dataset.value! || 1);
+         space.setTranslate(0, 0);
       }
    });
 }

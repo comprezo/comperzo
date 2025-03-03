@@ -93,7 +93,7 @@ export default class Space {
       });
    }
 
-   private setTranslate(dx: number, dy: number) {
+   public setTranslate(dx: number, dy: number) {
       this.x = dx;
       this.y = dy;
 
