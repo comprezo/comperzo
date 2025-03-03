@@ -29,8 +29,7 @@ export default class ImgController {
    private init() {
       this.getElements();
       this.initEvents();
-      this.initImg();
-      initTextareaAutoResize(this.$url);
+      this.initUrl();
    }
 
    private initEvents() {
@@ -77,9 +76,13 @@ export default class ImgController {
       this.setLoading(false);
    }
 
-   private initImg() {
+   private initUrl() {
       this.$url.value = this.url;
       this.updateImg();
+
+      setTimeout(() => {
+         initTextareaAutoResize(this.$url);
+      }, 100);
    }
 
    private prepareUrl(url: string) {

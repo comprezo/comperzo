@@ -33,8 +33,11 @@
    outline: none;
    transition: background-color 0.2s ease-out;
 
+   font-family: Roboto;
+   word-break: break-all;
+   
    resize: none;
-
+   
    scrollbar-width: thin;
    scrollbar-color: var(--sub-color) transparent;
 
