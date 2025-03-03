@@ -32,8 +32,6 @@
 }
 
 .app-space--img {
-   display: none;
-
    position: absolute;
    top: 0;
    left: 0;
@@ -42,6 +40,8 @@
    left: 50%;
 
    transform: translate(-50%, -50%);
+
+   transition: filter .5s ease-out;
 
    --real-split-x: calc(50% + var(--split-x));
    --real-split-y: calc(50% + var(--split-y));
@@ -61,6 +61,10 @@
    &:nth-child(4) {
       clip-path: inset(var(--real-split-y) calc(100% - var(--real-split-x)) 0 0);
    }
+}
+
+.app-space--img__loading {
+   filter: grayscale(1);
 }
 
 .app-space--img__ready {

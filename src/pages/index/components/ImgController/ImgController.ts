@@ -1,4 +1,4 @@
-import { imgToBlob } from '@/utils/files';
+import { formatBytes, imgToBlob } from '@/utils/files';
 import './styles/img-controller.css';
 
 import { initTextareaAutoResize } from '@/utils/textarea-autoresize';
@@ -14,11 +14,14 @@ export default class ImgController {
    private $size!: HTMLElement;
    private $resolution!: HTMLElement;
 
-   private initialUrl = '';
+   private url = '';
+
+   private resp!: Response;
+   private blob!: Blob;
 
    constructor(private $root: HTMLElement, { $img, initialUrl }: Options) {
       this.$img = $img;
-      this.initialUrl = initialUrl;
+      this.url = initialUrl;
 
       this.init();
    }
@@ -41,18 +44,6 @@ export default class ImgController {
 
          this.updateImg();
       });
-
-      this.$img.addEventListener('load', () => {
-         this.onLoad();
-      });
-   }
-
-   private async onLoad() {
-      this.$img.style.display = 'block'
-      this.$img.width = this.$img.naturalWidth;
-      this.$img.height = this.$img.naturalHeight;
-
-      this.updateStats();
    }
 
    private async updateStats() {
@@ -61,18 +52,46 @@ export default class ImgController {
 
       this.$resolution.textContent = `${w}x${h}`;
 
-      const size = await imgToBlob(this.$img);
-      this.$size.textContent = `${size} KB`;
+      const size = formatBytes(this.blob.size);
+      this.$size.textContent = `• ${size}`;
    }
 
    private async updateImg() {
-      this.$img.src = this.$url.value;
-      this.$img.style.display = 'block';
+      const url = this.prepareUrl(this.$url.value);
+      if (url === this.url && this.blob) return;
+      console.log(url, this.url);
+      
+      this.url = url;
+
+      this.setLoading(true);
+
+      this.resp = await fetch(url);
+      this.blob = await this.resp.blob();
+
+      const objectURL = URL.createObjectURL(this.blob);
+      this.$img.src = objectURL
+
+      await this.$img.decode();
+      this.$img.width = this.$img.naturalWidth;
+      this.$img.height = this.$img.naturalHeight;
+
+      this.updateStats();
+      this.setLoading(false);
    }
 
    private initImg() {
-      this.$url.value = this.initialUrl;
+      this.$url.value = this.url;
       this.updateImg();
+   }
+
+   private prepareUrl(url: string) {
+      const u = encodeURIComponent(url);
+      return `https://comperzo.io/cors-proxy?url=${u}`;
+   }
+
+   private setLoading(val: boolean) {
+      this.$root.classList.toggle('img-controller__loading', val);
+      this.$img.classList.toggle('app-space--img__loading', val);
    }
 
    private getElements() {
