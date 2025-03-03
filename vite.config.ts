@@ -9,6 +9,9 @@ export default defineConfig({
          '@': '/src',
       },
    },
+   build: {
+      sourcemap: true,
+   },
    css: {
       postcss: {
          plugins: [
