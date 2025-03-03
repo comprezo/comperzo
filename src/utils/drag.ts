@@ -1,5 +1,5 @@
 
-type DragOptions = {
+type Options = {
    threshold?: number;
    onDrag: (dx: number, dy: number) => void;
    onBefore?: () => void;
@@ -11,7 +11,7 @@ export function handleDrag($el: HTMLElement, {
    onBefore = () => { },
    afterDrag = () => { },
    onDrag,
-}: DragOptions) {
+}: Options) {
    $el.addEventListener('mousedown', (e) => {
       const dragAbort = new AbortController();
       onBefore();

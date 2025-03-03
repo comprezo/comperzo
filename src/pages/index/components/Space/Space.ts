@@ -8,7 +8,6 @@ export default class Space {
    private MAX_ZOOM = 50;
    private DRAG_THRESHOLD = 10;
 
-   private $root: HTMLElement;
    private $spaceWrapper!: HTMLElement;
    private $space!: HTMLElement;
    private $images!: HTMLImageElement[];
@@ -24,14 +23,17 @@ export default class Space {
 
    private transformFrameId = -1;
 
-   constructor($root: HTMLElement) {
-      this.$root = $root;
+   constructor(private $root: HTMLElement) {
       this.init();
    }
 
    private init() {
       this.getElements();
       this.initEvents();
+   }
+
+   public getImage(index: number) {
+      return this.$images[index];
    }
 
    private initEvents() {

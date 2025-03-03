@@ -1,9 +1,9 @@
-type ZoomOptions = {
+type Options = {
    onZoom: (delta: number) => void;
 };
 
 // TODO: refactor after ChatGPT
-export function handleZoom($el: HTMLElement, { onZoom }: ZoomOptions) {
+export function handleZoom($el: HTMLElement, { onZoom }: Options) {
    // Mouse wheel zoom
    $el.addEventListener('wheel', (e) => {
       e.preventDefault();

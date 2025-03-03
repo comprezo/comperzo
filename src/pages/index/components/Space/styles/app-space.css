@@ -32,6 +32,8 @@
 }
 
 .app-space--img {
+   display: none;
+
    position: absolute;
    top: 0;
    left: 0;
@@ -41,29 +43,28 @@
 
    transform: translate(-50%, -50%);
 
-   background-color: rgba(0 0 0 / 0.1);
-
    --real-split-x: calc(50% + var(--split-x));
    --real-split-y: calc(50% + var(--split-y));
 
    &:nth-child(1) {
-      filter: brightness(0.1);
       clip-path: inset(0 calc(100% - var(--real-split-x)) calc(100% - var(--real-split-y)) 0);
    }
 
    &:nth-child(2) {
       clip-path: inset(0 0 calc(100% - var(--real-split-y)) var(--real-split-x));
-      filter: grayscale(1);
    }
 
    &:nth-child(3) {
       clip-path: inset(var(--real-split-y) 0 0 var(--real-split-x));
-      filter: invert(1);
    }
 
    &:nth-child(4) {
       clip-path: inset(var(--real-split-y) calc(100% - var(--real-split-x)) 0 0);
    }
+}
+
+.app-space--img__ready {
+   display: block;
 }
 
 .app-space--handle {

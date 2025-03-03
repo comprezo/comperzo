@@ -1,26 +1,26 @@
-.img-controls {
+.img-controller {
    display: flex;
    flex-direction: column;
    gap: 4px;
 
-   &.img-controls__tr,
-   &.img-controls__br {
-      .img-controls--stats {
+   &.img-controller__tr,
+   &.img-controller__br {
+      .img-controller--stats {
          text-align: right;
       }
    }
 }
 
-.img-controls--url {
+.img-controller--url {
    min-height: 35px;
 }
 
-.img-controls--url {
+.img-controller--url {
    font-size: 14px;
    display: block;
 }
 
-.img-controls--inp {
+.img-controller--inp {
    padding: 8px;
 
    width: 350px;
@@ -44,7 +44,14 @@
    }
 }
 
-.img-controls--stats {
+.img-controller--stats {
    margin: 0;
    text-shadow: 0 0 1px rgba(0 0 0 / 0.5);
+
+   padding: 8px;
+   min-height: 40px;
+
+   background-color: rgba(0 0 0 / 0.65);
+   border-radius: 4px;
+   border: none;
 }

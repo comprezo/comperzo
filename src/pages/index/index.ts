@@ -1,9 +1,8 @@
 import '@/pages/base-page/base-page.ts';
-
-import './styles/img-controls.css';
 import './styles/app.css';
 
 import Space from './components/Space/Space';
+import ImgController from './components/ImgController/ImgController';
 
 /**
  * TODO:
@@ -18,23 +17,22 @@ import Space from './components/Space/Space';
  * - On url update - copy url to empty (initial) inputs
  */
 
+const initialImg = 'https://preview.giggster.com/images/locations-test/6ad58c04-f611-4e85-83aa-6f54070a5b0a/07e2ce12-7998-4541-8260-adbd45183b82/original.jpg?width=1280'
+const initialImgs = [
+   initialImg,
+   `${initialImg}&format=jpg&quality=65`,
+   `${initialImg}&format=web&quality=65`,
+   `${initialImg}&format=avif&quality=50`,
+];
+
 const $app = document.querySelector('.app-js') as HTMLElement;
 const $space = $app.querySelector('.app-space-js') as HTMLElement;
-const $urls = [...$app.querySelectorAll('.url-js')] as [HTMLTextAreaElement];
+const $imgControllers = [...$app.querySelectorAll('.img-controller-js')] as [HTMLTextAreaElement];
 
 const space = new Space($space);
-
-$urls.forEach(($url) => initAutoResize($url));
-
-function initAutoResize($area: HTMLTextAreaElement) {
-   autoResize($area);
-
-   $area.addEventListener('input', () => {
-      autoResize($area);
+const imgControllers = $imgControllers.map(($c, i) => {
+   new ImgController($c, {
+      $img: space.getImage(i),
+      initialUrl: initialImgs[i],
    });
-}
-
-function autoResize($el: HTMLElement) {
-   $el.style.height = 'auto';
-   $el.style.height = $el.scrollHeight + 'px';
-}
+});
