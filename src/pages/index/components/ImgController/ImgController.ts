@@ -58,9 +58,7 @@ export default class ImgController {
 
    private async updateImg() {
       const url = this.prepareUrl(this.$url.value);
-      if (url === this.url && this.blob) return;
-      console.log(url, this.url);
-      
+      if (url === this.url && this.blob) return;      
       this.url = url;
 
       this.setLoading(true);

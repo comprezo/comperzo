@@ -17,9 +17,9 @@ import ImgController from './components/ImgController/ImgController';
  * - On url update - copy url to empty (initial) inputs
  */
 
-const initialImg = 'https://preview.giggster.com/images/locations-test/6ad58c04-f611-4e85-83aa-6f54070a5b0a/07e2ce12-7998-4541-8260-adbd45183b82/original.jpg?width=1280'
+const initialImg = 'https://preview.giggster.com/images/media/hp4/hero/intro1@2500.jpg?'
 const initialImgs = [
-   initialImg,
+   `${initialImg}&quality=100`,
    `${initialImg}&format=jpg&saturation=100&quality=85`,
    `${initialImg}&format=webp&quality=65`,
    `${initialImg}&format=avif&quality=40`,
