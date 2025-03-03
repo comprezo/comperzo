@@ -1,41 +1,47 @@
+:root {
+   --viewport-padding: 16px;
+}
+
 .app {
    position: relative;
    height: 100%;
 
    background-image: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path d="M1 2V0h1v1H0v1z" fill-opacity=".025"/></svg>');
    background-size: 20px 20px;
-
-   @media(--test-media) {
-      /* background-color: red; */
-   }
 }
 
 .app--img-controller {
-   --padding: 16px;
-
    position: absolute;
    z-index: 5;
 
-   max-width: calc(50% - var(--padding) * 1.5);
-   max-height: calc(25% - var(--padding) * 1.5);
+   max-width: calc(50% - var(--viewport-padding) * 1.5);
+   max-height: calc(25% - var(--viewport-padding) * 1.5);
 
    &:nth-child(1) {
-      top: var(--padding);
-      left: var(--padding);
+      top: var(--viewport-padding);
+      left: var(--viewport-padding);
    }
 
    &:nth-child(2) {
-      top: var(--padding);
-      right: var(--padding);
+      top: var(--viewport-padding);
+      right: var(--viewport-padding);
    }
 
    &:nth-child(3) {
-      bottom: var(--padding);
-      right: var(--padding);
+      bottom: var(--viewport-padding);
+      right: var(--viewport-padding);
    }
 
    &:nth-child(4) {
-      bottom: var(--padding);
-      left: var(--padding);
+      bottom: var(--viewport-padding);
+      left: var(--viewport-padding);
    }
+}
+
+.app-panel {
+   position: absolute;
+   bottom: var(--viewport-padding);
+   left: 50%;
+   z-index: 15;
+   transform: translate(-50%, 0);
 }

@@ -1,0 +1,28 @@
+.app-panel {
+   display: flex;
+   gap: 8px;
+
+   @media (--mobile-media) {
+      display: none;
+   }
+}
+
+.app-panel--btn {
+   padding: 8px;
+
+   font-size: 16px;
+   font-weight: 600;
+
+   background-color: rgba(0 0 0 / 0.65);
+   border-radius: 4px;
+   border: none;
+   cursor: pointer;
+
+   outline: none;
+   transition: background-color 0.2s ease-out;
+
+   &:hover,
+   &:focus {
+      background-color: rgba(0 0 0 / 0.85);
+   }
+}

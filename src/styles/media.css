@@ -1,1 +1,1 @@
-@custom-media --test-media (width >= 600px);
+@custom-media --mobile-media (width < 1000px);

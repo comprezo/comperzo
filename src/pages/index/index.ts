@@ -1,4 +1,6 @@
 import '@/pages/base-page/base-page.ts';
+
+import './styles/app-panel.css';
 import './styles/app.css';
 
 import Space from './components/Space/Space';
@@ -28,6 +30,7 @@ const initialImgs = [
 const $app = document.querySelector('.app-js') as HTMLElement;
 const $space = $app.querySelector('.app-space-js') as HTMLElement;
 const $imgControllers = [...$app.querySelectorAll('.img-controller-js')] as [HTMLTextAreaElement];
+const $panel = $app.querySelector('.panel-js') as HTMLElement;
 
 const space = new Space($space);
 const imgControllers = $imgControllers.map(($c, i) => {
@@ -36,3 +39,21 @@ const imgControllers = $imgControllers.map(($c, i) => {
       initialUrl: initialImgs[i],
    });
 });
+
+initEvents();
+
+function initEvents() {
+   $panel.addEventListener('click', (e) => {
+      const $target = e.target as HTMLElement;
+      console.log(1);
+      
+
+      const $zoom = $target.closest('.zoom-js') as HTMLElement;
+      console.log(2, $zoom);
+
+      if ($zoom) {
+         console.log(+$zoom.dataset.value! || 1);
+         space.setZoom(+$zoom.dataset.value! || 1);
+      }
+   });
+}

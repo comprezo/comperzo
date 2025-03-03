@@ -101,9 +101,15 @@ export default class Space {
    }
 
    private zoomBy(delta: number) {
+      // TODO: add min/max for delta
       this.zoom += delta * this.ZOOM_STEP * this.zoom;
       this.zoom = Math.max(this.MIN_ZOOM, Math.min(this.MAX_ZOOM, this.zoom));
 
+      this.scheduleRender();
+   }
+
+   public setZoom(zoom: number) {
+      this.zoom = zoom;
       this.scheduleRender();
    }
 
