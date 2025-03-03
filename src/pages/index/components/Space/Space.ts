@@ -1,8 +1,7 @@
-import { handleDrag } from '@/utils/drag';
+import { handleZoom } from '@/utils/zoom';
 import './styles/app-space.css';
 
-import { throttle } from 'throttle-debounce';
-
+import { handleDrag } from '@/utils/drag';
 export default class Space {
    private ZOOM_STEP = 0.001;
    private MIN_ZOOM = 0.02;
@@ -36,9 +35,8 @@ export default class Space {
    }
 
    private initEvents() {
-      this.$root.addEventListener('wheel', (e) => {
-         e.preventDefault();
-         this.zoomBy(e.deltaY);
+      handleZoom(this.$root, {
+         onZoom: (delta) => this.zoomBy(delta),
       });
 
       this.initSpaceDrag();

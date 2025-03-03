@@ -14,6 +14,8 @@ import Space from './components/Space/Space';
  * (any side, no matter what handle is focused)
  * 
  * - When img params updated - save them to url
+ * 
+ * - On url update - copy url to empty (initial) inputs
  */
 
 const $app = document.querySelector('.app-js') as HTMLElement;
