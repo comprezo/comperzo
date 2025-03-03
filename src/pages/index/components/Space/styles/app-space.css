@@ -1,6 +1,9 @@
 :root {
    --split-x: 0px;
    --split-y: 0px;
+
+   --handle-x: 0px;
+   --handle-y: 0px;
 }
 
 .app-space {
@@ -10,7 +13,7 @@
    overflow: hidden;
 }
 
-.app-space--space {
+.app-space--space-wrapper {
    position: absolute;
    top: 0;
    left: 0;
@@ -18,6 +21,14 @@
    width: 100%;
 
    user-select: none;
+}
+
+.app-space--space {
+   position: absolute;
+   top: 0;
+   left: 0;
+   height: 100%;
+   width: 100%;
 }
 
 .app-space--img {
@@ -98,7 +109,7 @@
 
    top: 0;
    bottom: 0;
-   left: calc(50% + var(--split-x));
+   left: calc(50% + var(--handle-x));
 
    cursor: ew-resize;
 }
@@ -109,7 +120,7 @@
 
    left: 0;
    right: 0;
-   top: calc(50% + var(--split-y));
+   top: calc(50% + var(--handle-y));
 
    flex-direction: column;
 
@@ -120,8 +131,8 @@
    position: absolute;
    z-index: 10;
 
-   top: calc(50% + var(--split-y));
-   left: calc(50% + var(--split-x));
+   top: calc(50% + var(--handle-y));
+   left: calc(50% + var(--handle-x));
 
    transform: translate(-50%, -50%);
 
@@ -129,5 +140,7 @@
    height: 32px;
 
    opacity: 0;
+   background-color: rgba(0 0 0 / 0.8);
+   border: none;
    cursor: move;
 }

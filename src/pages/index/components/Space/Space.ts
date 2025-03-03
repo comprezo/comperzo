@@ -10,6 +10,7 @@ export default class Space {
    private DRAG_THRESHOLD = 10;
 
    private $root: HTMLElement;
+   private $spaceWrapper!: HTMLElement;
    private $space!: HTMLElement;
    private $images!: HTMLImageElement[];
    private $handleV!: HTMLElement;
@@ -48,7 +49,7 @@ export default class Space {
       let startX = 0;
       let startY = 0;
 
-      handleDrag(this.$space, {
+      handleDrag(this.$spaceWrapper, {
          threshold: this.DRAG_THRESHOLD,
          onBefore: () => {
             startX = this.x;
@@ -122,17 +123,24 @@ export default class Space {
    }
 
    private render() {
-      this.$space.style.transform = `translate(${this.x}px, ${this.y}px) scale(${this.zoom})`;
+      const x = this.x / this.zoom;
+      const y = this.y / this.zoom;
 
-      const splitX = this.handleX //+ this.x;
-      const splitY = this.handleY //+ this.y;
+      const splitX = this.handleX / this.zoom - x;
+      const splitY = this.handleY / this.zoom - y;
+
+      this.$space.style.transform = `scale(${this.zoom}) translate(${x}px, ${y}px)`;
 
       this.$root.style.setProperty('--split-x', `${splitX}px`);
       this.$root.style.setProperty('--split-y', `${splitY}px`);
+
+      this.$root.style.setProperty('--handle-x', `${this.handleX}px`);
+      this.$root.style.setProperty('--handle-y', `${this.handleY}px`);
    }
 
    private getElements() {
-      this.$space = this.$root.querySelector('.space-js') as HTMLElement;
+      this.$spaceWrapper = this.$root.querySelector('.space-wrapper-js') as HTMLElement;
+      this.$space = this.$spaceWrapper.querySelector('.space-js') as HTMLElement;
       this.$images = [...this.$space.querySelectorAll('.img-js')] as HTMLImageElement[];
       this.$handleV = this.$root.querySelector('.handle-v-js') as HTMLElement;
       this.$handleH = this.$root.querySelector('.handle-h-js') as HTMLElement;
