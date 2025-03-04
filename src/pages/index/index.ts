@@ -17,6 +17,10 @@ import ImgController from './components/ImgController/ImgController';
  * - When img params updated - save them to url
  * 
  * - On url update - copy url to empty (initial) inputs
+ * 
+ * - Change selection color
+ * 
+ * - Disable spell check and other inputs features
  */
 
 const initialImg = 'https://preview.giggster.com/images/media/hp4/hero/intro1@2500.jpg?width=1200'
