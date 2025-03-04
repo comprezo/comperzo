@@ -41,7 +41,7 @@
 
    transform: translate(-50%, -50%);
 
-   transition: filter .5s ease-out;
+   transition: filter .25s ease-out;
 
    --real-split-x: calc(50% + var(--split-x));
    --real-split-y: calc(50% + var(--split-y));
