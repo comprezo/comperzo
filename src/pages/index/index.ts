@@ -24,7 +24,7 @@ const initialImgs = [
    `${initialImg}&quality=80`,
    `${initialImg}&format=jpg&saturation=100&quality=70`,
    `${initialImg}&format=webp&quality=65`,
-   `${initialImg}&format=avif&quality=30`,
+   `${initialImg}&format=avif&sharpen=a4,r2,t1&quality=30`,
 ];
 
 const $app = document.querySelector('.app-js') as HTMLElement;
