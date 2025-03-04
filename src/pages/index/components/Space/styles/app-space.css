@@ -4,6 +4,9 @@
 
    --handle-x: 0px;
    --handle-y: 0px;
+
+   --handle-size: 5px;
+   --handle-real-size: 32px;
 }
 
 .app-space {
@@ -11,6 +14,10 @@
    height: 100%;
 
    overflow: hidden;
+}
+
+.app-space__no-handles {
+   --handle-size: 0;
 }
 
 .app-space--space-wrapper {
@@ -72,10 +79,7 @@
 }
 
 .app-space--handle {
-   --size: 8px;
-   --real-size: 32px;
-
-   --bg: rgba(0 0 0 / 0.8);
+   --bg: rgba(0 0 0 / 0.7);
    --shadow-color: rgba(255 255 255 / 0.1);
 
    position: absolute;
@@ -98,7 +102,7 @@
 
    &:before {
       content: '';
-      flex-basis: var(--size);
+      flex-basis: var(--handle-size);
 
       background-color: var(--bg);
       box-shadow: 0 0 0 1px var(--shadow-color);
@@ -109,8 +113,8 @@
 }
 
 .app-space--handle__v {
-   width: var(--real-size);
-   margin: 0 calc(var(--real-size) / -2);
+   width: var(--handle-real-size);
+   margin: 0 calc(var(--handle-real-size) / -2);
 
    top: 0;
    bottom: 0;
@@ -120,8 +124,8 @@
 }
 
 .app-space--handle__h {
-   height: var(--real-size);
-   margin: calc(var(--real-size) / -2) 0;
+   height: var(--handle-real-size);
+   margin: calc(var(--handle-real-size) / -2) 0;
 
    left: 0;
    right: 0;
@@ -134,18 +138,18 @@
 
 .app-space--handle-xy {
    position: absolute;
+   transform: translate(-50%, -50%);
    z-index: 10;
 
    top: calc(50% + var(--handle-y));
    left: calc(50% + var(--handle-x));
 
-   transform: translate(-50%, -50%);
-
-   width: 48px;
-   height: 48px;
+   width: calc(var(--handle-real-size) * 1.1);
+   height: calc(var(--handle-real-size) * 1.1);
 
    opacity: 0;
    background-color: rgba(0 0 0 / 0.8);
+
    border: none;
    cursor: move;
 }
