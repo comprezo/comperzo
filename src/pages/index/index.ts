@@ -35,6 +35,7 @@ const $app = document.querySelector('.app-js') as HTMLElement;
 const $space = $app.querySelector('.app-space-js') as HTMLElement;
 const $imgControllers = [...$app.querySelectorAll('.img-controller-js')] as [HTMLTextAreaElement];
 const $panel = $app.querySelector('.panel-js') as HTMLElement;
+const $toggleHandles = $panel.querySelector('.toggle-handles-js') as HTMLElement;
 
 const space = new Space($space);
 const imgControllers = $imgControllers.map(($c, i) => {
@@ -49,16 +50,15 @@ initEvents();
 function initEvents() {
    $panel.addEventListener('click', (e) => {
       const $target = e.target as HTMLElement;
-      console.log(1);
-      
-
       const $zoom = $target.closest('.zoom-js') as HTMLElement;
-      console.log(2, $zoom);
 
       if ($zoom) {
-         console.log(+$zoom.dataset.value! || 1);
          space.setZoom(+$zoom.dataset.value! || 1);
          space.setTranslate(0, 0);
       }
+   });
+
+   $toggleHandles.addEventListener('click', () => {
+      $space.classList.toggle('app-space__no-handles');
    });
 }
