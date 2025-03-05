@@ -1,55 +1,57 @@
 name: Deploy
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+   push:
+     branches:
+        - main
+        - dev
+   workflow_dispatch:
 
 jobs:
-  deploy:
-    runs-on: ubuntu-latest
+   deploy:
+      runs-on: ubuntu-latest
+      environment: ${{ github.ref == 'refs/heads/main' && 'prod' || 'dev' }}
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+      steps:
+         - name: Checkout Repository
+           uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'npm'
+         - name: Setup Node
+           uses: actions/setup-node@v4
+           with:
+            node-version: 22
+            cache: 'npm'
 
-      - name: Create .env
-        run: |
-          echo "${{ secrets.DOT_ENV }}" > .env
+         - name: Create .env
+           run: |
+            echo "${{ secrets.DOT_ENV }}" > .env
 
-      - name: Install Dependencies
-        run: npm ci
+         - name: Install Dependencies
+           run: npm ci
 
-      - name: Build Project
-        run: npm run build
+         - name: Build Project
+           run: npm run build
 
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
+         - name: Setup SSH
+           run: |
+            mkdir -p ~/.ssh
+            echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            chmod 600 ~/.ssh/id_rsa
+            ssh-keyscan -H ${{ secrets.REMOTE_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy with rsync
-        run: |
-          TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-          RELEASE_DIR="${{ secrets.REMOTE_PATH }}/releases/$TIMESTAMP"
-          CURRENT_LINK="${{ secrets.REMOTE_PATH }}/current"
+         - name: Deploy with rsync
+           run: |
+            TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
+            RELEASE_DIR="${{ secrets.REMOTE_PATH }}/releases/$TIMESTAMP"
+            CURRENT_LINK="${{ secrets.REMOTE_PATH }}/current"
 
-          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
-            mkdir -p $RELEASE_DIR
-          EOF
+            ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
+               mkdir -p $RELEASE_DIR
+            EOF
 
-          rsync -avz --delete \
-            ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:$RELEASE_DIR
+            rsync -avz --delete \
+               ./dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:$RELEASE_DIR
 
-          ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
-            ln -sfn $RELEASE_DIR $CURRENT_LINK
-          EOF
+            ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
+               ln -sfn $RELEASE_DIR $CURRENT_LINK
+            EOF
