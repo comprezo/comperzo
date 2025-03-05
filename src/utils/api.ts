@@ -10,12 +10,17 @@ type FetchApiOptions = {
 }
 
 export async function fetchApi(path: string, method: string = 'GET', options: FetchApiOptions = {}) {
+   const headers = {} as { [key: string]: string };
+   if (options.data) {
+      headers['Content-Type'] = 'application/json';
+   }
+
    try {
       const resp = await fetch(`${import.meta.env.VITE_API}${path}`, {
          ...options.requestInit,
          body: JSON.stringify(options.data),
          headers: {
-            'Content-Type': 'application/json',
+            ...headers,
             ...options.requestInit?.headers,
          },
          method,
