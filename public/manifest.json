@@ -1,0 +1,20 @@
+{
+   "name": "Comperzo",
+   "description": "4-in-1 URL-Based Image Optimization Comparison",
+   "display": "standalone",
+   "start_url": "/?source=pwa",
+   "scope": "/",
+   "icons": [
+      {
+         "src": "/images/logo/logo.svg",
+         "type": "image/svg+xml",
+         "sizes": "any"
+      },
+      {
+         "src": "/images/logo/maskable.svg",
+         "type": "image/svg+xml",
+         "purpose": "maskable",
+         "sizes": "any"
+      }
+   ]
+}
