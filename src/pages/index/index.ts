@@ -17,7 +17,7 @@ import ImgController from './components/ImgController/ImgController';
  * - When img params updated - save them to url
  * 
  * - On url update - copy url to empty (initial) inputs
- * 
+ * - Ability to change img opacity for each image?
  */
 
 const initialImg = 'https://preview.giggster.com/images/media/hp4/hero/intro1@2500.jpg?width=1200'
