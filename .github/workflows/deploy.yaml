@@ -55,3 +55,10 @@ jobs:
             ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
                ln -sfn $RELEASE_DIR $CURRENT_LINK
             EOF
+
+         - name: Cleanup Old Releases (Keep Last 25)
+           run: |
+            ssh ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} << EOF
+            cd ${{ secrets.REMOTE_PATH }}/releases
+            ls -dt */ | tail -n +26 | xargs rm -rf --
+            EOF
