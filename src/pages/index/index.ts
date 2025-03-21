@@ -20,9 +20,9 @@ import ImgController from './components/ImgController/ImgController';
  * - Ability to change img opacity for each image?
  */
 
-const initialImg = 'https://preview.giggster.com/images/media/hp4/hero/intro1@2500.jpg?width=1200'
+const initialImg = 'https://www.fastly.io/image.jpg?width=1440'
 const initialImgs = [
-   `${initialImg}&quality=80`,
+   `${initialImg}`,
    `${initialImg}&format=jpg&saturation=100&quality=70`,
    `${initialImg}&format=webp&quality=65`,
    `${initialImg}&format=avif&sharpen=a4,r2,t1&quality=30`,
